@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "910906869422",
+    "project_id": "legs-82901",
+    "storage_bucket": "legs-82901.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910906869422:android:99d57d30e3c559ed58cf3f",
+        "android_client_info": {
+          "package_name": "com.pt2.leg5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910906869422-33ulkut897m44mmikatiorp6tdjlej7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pt2.leg5",
+            "certificate_hash": "1be0848322b890e8b2f1f5770d74bd53da86e0db"
+          }
+        },
+        {
+          "client_id": "910906869422-sbfujjcf6pjh2iu6bavpru1j02uqjvk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWgg2Gdr018TUaL4s3MsLVf-uH1APLSas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910906869422-sbfujjcf6pjh2iu6bavpru1j02uqjvk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
