@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
         <item>@font/allerta</item>
         <item>@font/nunito_sans_extralight</item>
         <item>@font/playfair_display</item>
+        <item>@font/poppins</item>
+        <item>@font/poppins_bold</item>
     </array>
 </resources>

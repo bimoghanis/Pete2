@@ -11,40 +11,58 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="215dp"
-            android:layout_height="135dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/logo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="116dp"
+                android:layout_height="123dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ketlogo" />
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:layout_marginLeft="120dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/logo" />
+
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Temukan Jajanan Kesukaanmu"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="MASUK AKUN ANDA"
+            android:shadowColor="@color/black"
             android:textAlignment="center"
-            android:textColor="#FB8C00"
+            android:textColor="#000000"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Email">
+            style="@style/NoUnderlineTextInputLayout"
+            android:hint="Masukan Email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/rounded_background"
+                android:fontFamily="@font/poppins_bold"
                 android:inputType="textEmailAddress"
+                android:textSize="10sp"
+                android:textStyle="bold"
                 tools:visibility="visible" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -53,51 +71,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Password">
+            style="@style/NoUnderlineTextInputLayout"
+            android:hint="Masukan Password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password_login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:inputType="textPassword" />
+                android:background="@drawable/rounded_background"
+                android:fontFamily="@font/poppins_bold"
+                android:inputType="textPassword"
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/forgot_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Forgot Password?"
-            android:textAlignment="textEnd" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="60dp"
+            android:layout_width="142dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="Login"
             android:textColor="#FFFFFF"
-            app:backgroundTint="#FB8C00" />
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:backgroundTint="#FB7930" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="New User?"
-            android:textAlignment="center" />
-
-        <TextView
+            android:layout_marginTop="15dp"
             android:id="@+id/tv_to_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Here"
+            android:text="atau"
             android:textAlignment="center"
-            android:textColor="#FB8C00"
+            android:textColor="#000000"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logogoogle" />
 
     </LinearLayout>
 
