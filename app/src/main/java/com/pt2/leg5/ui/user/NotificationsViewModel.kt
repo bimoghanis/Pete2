@@ -1,4 +1,4 @@
-package com.pt2.leg5.ui.notifications
+package com.pt2.leg5.ui.user
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

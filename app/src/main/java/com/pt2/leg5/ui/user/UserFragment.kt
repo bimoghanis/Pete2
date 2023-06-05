@@ -1,6 +1,7 @@
-package com.pt2.leg5.ui.notifications
+package com.pt2.leg5.ui.user
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -9,16 +10,15 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.storage.FirebaseStorage
 import com.pt2.leg5.LoginActivity
 import com.pt2.leg5.databinding.FragmentUserBinding
+import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 
 class UserFragment : Fragment() {
@@ -44,6 +44,11 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val savedImageUrl = getSavedImageUrl()
+        if (!savedImageUrl.isNullOrEmpty()) {
+            imgUri = Uri.parse(savedImageUrl)
+            Picasso.get().load(imgUri).into(binding.cviUser)
+        }
 
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
@@ -231,6 +236,9 @@ class UserFragment : Fragment() {
         }
     }
 
+
+
+
     private fun uploadImgToFirebase(imgBitmap: Bitmap) {
         val baos = ByteArrayOutputStream()
         val ref = FirebaseStorage.getInstance().reference.child("img_user/${FirebaseAuth.getInstance().currentUser?.email}")
@@ -238,17 +246,34 @@ class UserFragment : Fragment() {
 
         val img = baos.toByteArray()
         ref.putBytes(img)
-            .addOnCompleteListener{
-                if (it.isSuccessful){
-                    ref.downloadUrl.addOnCompleteListener { Task->
-                        Task.result.let{ Uri ->
-                            imgUri = Uri
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    ref.downloadUrl.addOnCompleteListener { urlTask ->
+                        if (urlTask.isSuccessful) {
+                            val imageUrl = urlTask.result.toString()
+                            saveImageUrlToStorage(imageUrl) // Menyimpan URL gambar profil ke penyimpanan lokal
+                            imgUri = Uri.parse(imageUrl) // Menyimpan URI gambar profil di imgUri
                             binding.cviUser.setImageBitmap(imgBitmap)
                         }
                     }
                 }
             }
     }
+
+    // Method untuk mendapatkan URL gambar profil dari penyimpanan lokal
+    private fun getSavedImageUrl(): String? {
+        val sharedPreferences = requireContext().getSharedPreferences("Profile", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("profileImageUrl", null)
+    }
+
+    // Method untuk menyimpan URL gambar profil ke penyimpanan lokal
+    private fun saveImageUrlToStorage(imageUrl: String) {
+        val sharedPreferences = requireContext().getSharedPreferences("Profile", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("profileImageUrl", imageUrl)
+        editor.apply()
+    }
+
 
     private fun btnLogout() {
         auth = FirebaseAuth.getInstance()
