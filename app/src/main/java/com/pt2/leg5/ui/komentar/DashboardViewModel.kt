@@ -1,4 +1,4 @@
-package com.pt2.leg5.ui.dashboard
+package com.pt2.leg5.ui.komentar
 import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel() {
