@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pt2.leg5.R
@@ -39,12 +41,29 @@ class HomeFragment : Fragment() {
 
         // Panggil method untuk mengambil data ulasan dari ViewModel
         observeUlasan()
+
+        val searchButton = view.findViewById<Button>(R.id.searchButton)
+
+        val searchBar = view.findViewById<EditText>(R.id.searchBar)
+
+        searchButton.setOnClickListener {
+            val query = searchBar.text.toString()
+            searchUlasan(query)
+
+        }
     }
 
     private fun observeUlasan() {
         val ulasanViewModel = ViewModelProvider(requireActivity()).get(UlasanViewModel::class.java)
         ulasanViewModel.getAllUlasan().observe(viewLifecycleOwner) { ulasanList ->
             // Set data ulasan ke adapter
+            ulasanAdapter.submitList(ulasanList)
+        }
+    }
+
+    private fun searchUlasan(query: String) {
+        val ulasanViewModel = ViewModelProvider(requireActivity()).get(UlasanViewModel::class.java)
+        ulasanViewModel.searchUlasan(query).observe(viewLifecycleOwner) { ulasanList ->
             ulasanAdapter.submitList(ulasanList)
         }
     }

@@ -18,4 +18,8 @@ interface UlasanDao {
 
     @Query("SELECT * FROM ulasan ORDER BY id DESC")
     fun getAllUlasan(): LiveData<List<UlasanEntity>>
+
+    @Query("SELECT * FROM ulasan WHERE LOWER(restaurant_name) LIKE '%' || LOWER(:query) || '%' OR LOWER(restaurant_address) LIKE '%' || LOWER(:query) || '%'")
+    fun searchUlasan(query: String): LiveData<List<UlasanEntity>>
+
 }

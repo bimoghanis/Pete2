@@ -21,6 +21,10 @@ class UlasanViewModel(application: Application) : AndroidViewModel(application) 
         return ulasanDao.getAllUlasan()
     }
 
+    fun searchUlasan(query: String): LiveData<List<UlasanEntity>> {
+        return ulasanDao.searchUlasan(query)
+    }
+
     fun submitComment(
         restaurantName: String,
         restaurantAddress: String,

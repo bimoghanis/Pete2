@@ -35,7 +35,7 @@
         <!-- Search bar -->
         <EditText
             android:id="@+id/searchBar"
-            android:layout_width="1dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/search_bar_bg"
@@ -45,12 +45,12 @@
             android:layout_marginStart="10dp"/>
 
         <!-- Search button -->
-        <ImageView
+        <Button
             android:id="@+id/searchButton"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/baseline_search_24"
-            android:padding="4dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/baseline_search_24" />
 
     </LinearLayout>
 

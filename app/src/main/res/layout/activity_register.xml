@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@android:style/Theme"
     android:padding="35dp"
     tools:context=".RegisterActivity">
 
@@ -123,24 +122,6 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:backgroundTint="#FB7930" />
-
-        <TextView
-            android:id="@+id/tv_to_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="atau"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textStyle="bold" />
-
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/logogoogle" />
 
 
     </LinearLayout>
