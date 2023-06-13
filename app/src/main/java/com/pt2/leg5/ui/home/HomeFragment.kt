@@ -4,38 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.pt2.leg5.databinding.FragmentHomeBinding
+import com.pt2.leg5.R
+
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.pt2.leg5.ui.ulasan.UlasanAdapter
+import com.pt2.leg5.ui.ulasan.UlasanViewModel
+
+// ...
 
 class HomeFragment : Fragment() {
+    private lateinit var recyclerViewUlasan: RecyclerView
+    private lateinit var ulasanAdapter: UlasanAdapter
 
-private var _binding: FragmentHomeBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
-
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-    _binding = FragmentHomeBinding.inflate(inflater, container, false)
-    val root: View = binding.root
-
-    val textView: TextView = binding.textHome
-    homeViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
-    return root
-  }
 
-override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Inisialisasi RecyclerView dan adapter
+        recyclerViewUlasan = view.findViewById(R.id.recyclerViewUlasan)
+        ulasanAdapter = UlasanAdapter()
+
+        // Atur layout manager untuk RecyclerView
+        recyclerViewUlasan.layoutManager = LinearLayoutManager(requireContext())
+
+        // Atur adapter ke RecyclerView
+        recyclerViewUlasan.adapter = ulasanAdapter
+
+        // Panggil method untuk mengambil data ulasan dari ViewModel
+        observeUlasan()
+    }
+
+    private fun observeUlasan() {
+        val ulasanViewModel = ViewModelProvider(requireActivity()).get(UlasanViewModel::class.java)
+        ulasanViewModel.getAllUlasan().observe(viewLifecycleOwner) { ulasanList ->
+            // Set data ulasan ke adapter
+            ulasanAdapter.submitList(ulasanList)
+        }
     }
 }

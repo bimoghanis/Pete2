@@ -1,24 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment" >
+    android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/text_home"
+    <!-- Navbar -->
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:id="@+id/navbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="56dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Navbar logo -->
+        <ImageView
+            android:id="@+id/navbarLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logo"
+            android:padding="4dp" />
+
+        <!-- Navbar title -->
+        <TextView
+            android:id="@+id/navbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="LEG5"
+            android:textColor="#FB7930"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginStart="8dp" />
+
+        <!-- Search bar -->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/search_bar_bg"
+            android:padding="8dp"
+            android:hint="Search"
+            android:textColor="#000000"
+            android:layout_marginStart="10dp"/>
+
+        <!-- Search button -->
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_search_24"
+            android:padding="4dp" />
+
+    </LinearLayout>
+
+    <!-- Content layout -->
+    <FrameLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navbarLayout">
+
+        <!-- Add your content views here -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewUlasan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+</RelativeLayout>

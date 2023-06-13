@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.pt2.leg5.databinding.ActivityLoginBinding
@@ -20,10 +21,6 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-//        binding.forgotPassword.setOnClickListener {
-//            val intent = Intent(this, ResetPasswordActivity::class.java)
-//            startActivity(intent)
-//        }
 
         binding.tvToRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
@@ -54,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                 binding.edtPasswordLogin.requestFocus()
                 return@setOnClickListener
             }
-
             LoginFirebase(email,password)
         }
     }

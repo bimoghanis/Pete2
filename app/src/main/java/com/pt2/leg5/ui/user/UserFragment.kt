@@ -55,17 +55,7 @@ class UserFragment : Fragment() {
 
         //kondisi user sedang login atau tidak
         if (user != null){
-            binding.edtName.setText(user.displayName)
             binding.edtEmail.setText(user.email)
-
-            //kondisi email sudah verifikasi atau belum
-            if (user.isEmailVerified){
-                binding.iconVerify.visibility = View.VISIBLE
-                binding.iconNotVerify.visibility = View.GONE
-            } else {
-                binding.iconVerify.visibility = View.GONE
-                binding.iconNotVerify.visibility = View.VISIBLE
-            }
         }
 
         //ke kamera buat ambil gambar
@@ -88,19 +78,8 @@ class UserFragment : Fragment() {
             changePass()
         }
 
-//        //button ganti email
-//        binding.btnChangeEmail.setOnClickListener {
-//            changeEmail()
-//        }
-
-
     }
 
-
-//    private fun changeEmail() {
-//        val intent = Intent(context, ChangeEmailActivity::class.java)
-//        startActivity(intent)
-//    }
 
     private fun changePass() {
         auth = FirebaseAuth.getInstance()
@@ -219,23 +198,24 @@ class UserFragment : Fragment() {
     }
 
     private fun goToCamera() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-            activity?.packageManager?.let {
-                intent?.resolveActivity(it).also {
-                    startActivityForResult(intent, REQ_CAM)
-                }
-            }
-        }
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQ_IMAGE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQ_CAM && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQ_IMAGE && resultCode == Activity.RESULT_OK) {
+            val selectedImage: Uri? = data?.data
+            selectedImage?.let {
+                val imgBitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, selectedImage)
+                uploadImgToFirebase(imgBitmap)
+            }
+        } else if (requestCode == REQ_CAM && resultCode == Activity.RESULT_OK) {
             val imgBitmap = data?.extras?.get("data") as Bitmap
             uploadImgToFirebase(imgBitmap)
         }
     }
-
 
 
 
@@ -285,5 +265,6 @@ class UserFragment : Fragment() {
 
     companion object{
         const val REQ_CAM = 100
+        const val REQ_IMAGE = 101
     }
 }
