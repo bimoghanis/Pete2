@@ -26,14 +26,20 @@ class UlasanViewModel(application: Application) : AndroidViewModel(application) 
         restaurantAddress: String,
         description: String,
         isClean: Boolean,
-        isNotClean: Boolean
+        services: Boolean,
+        packaging: Boolean,
+        recommend: Boolean
+
     ) {
         val ulasan = UlasanEntity(
             restaurantName = restaurantName,
             restaurantAddress = restaurantAddress,
             photo = "", // Ubah dengan path foto yang sesuai jika Anda ingin menyimpan path foto ke dalam database
             description = description,
-            isClean = isClean
+            isClean = isClean,
+            packaging = packaging,
+            services = services,
+            recommend = recommend
         )
 
         // Menampilkan Konfirmasi berhasil

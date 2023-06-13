@@ -23,5 +23,15 @@ data class UlasanEntity(
     var description: String,
 
     @ColumnInfo(name = "is_clean")
-    var isClean: Boolean
+    var isClean: Boolean,
+
+    @ColumnInfo(name = "packaging")
+    var packaging: Boolean,
+
+    @ColumnInfo(name = "services")
+    var services: Boolean,
+
+    @ColumnInfo(name = "recommend")
+    var recommend: Boolean
+
 )

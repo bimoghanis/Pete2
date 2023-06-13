@@ -78,12 +78,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/buttonAddPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:text="Tambah Foto" />
+
+        <Button
+            android:id="@+id/buttonAddPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="107dp"
+            android:layout_marginEnd="40dp"
+            android:text="Tambah Foto" />
 
     <!-- Tampilan untuk menampilkan foto yang dipilih -->
         <ImageView
@@ -122,15 +123,17 @@
         android:text="Bersih" />
 
     <CheckBox
-        android:id="@+id/checkBoxNotClean"
+        android:id="@+id/checkBoxPackaging"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tidak Bersih" />
+        android:text="Packaging" />
         <CheckBox
             android:id="@+id/checkBoxService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pelayanan" /><CheckBox
+            android:text="Pelayanan" />
+
+        <CheckBox
         android:id="@+id/checkBoxRecommended"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,9 +142,9 @@
 
     <Button
         android:id="@+id/buttonSubmit"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="264dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Submit" />
 
 </LinearLayout>

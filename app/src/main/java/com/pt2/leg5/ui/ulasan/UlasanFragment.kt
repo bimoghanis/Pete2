@@ -31,7 +31,9 @@ class UlasanFragment : Fragment() {
     private lateinit var imageViewSelectedPhoto: ImageView
     private lateinit var editTextDescription: EditText
     private lateinit var checkBoxClean: CheckBox
-    private lateinit var checkBoxNotClean: CheckBox
+    private lateinit var checkBoxPackaging: CheckBox
+    private lateinit var checkBoxPelayanan: CheckBox
+    private lateinit var checkBoxRekomendasi: CheckBox
     private lateinit var buttonSubmit: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,7 +47,9 @@ class UlasanFragment : Fragment() {
         imageViewSelectedPhoto = rootView.findViewById(R.id.imageViewSelectedPhoto)
         editTextDescription = rootView.findViewById(R.id.editTextDescription)
         checkBoxClean = rootView.findViewById(R.id.checkBoxClean)
-        checkBoxNotClean = rootView.findViewById(R.id.checkBoxNotClean)
+        checkBoxPackaging = rootView.findViewById(R.id.checkBoxPackaging)
+        checkBoxPelayanan = rootView.findViewById(R.id.checkBoxService)
+        checkBoxRekomendasi = rootView.findViewById(R.id.checkBoxRecommended)
         buttonSubmit = rootView.findViewById(R.id.buttonSubmit)
 
         buttonAddPhoto.setOnClickListener {
@@ -109,11 +113,12 @@ class UlasanFragment : Fragment() {
 
         // Periksa kebersihan yang dipilih
         val isClean = checkBoxClean.isChecked
-        val isNotClean = checkBoxNotClean.isChecked
-
+        val packaging = checkBoxPackaging.isChecked
+        val pelayanan = checkBoxPelayanan.isChecked
+        val rekomendasi = checkBoxRekomendasi.isChecked
         // Lakukan sesuatu dengan data komentar/ulasan makanan yang diisi
         // Misalnya, kirim data ke server, simpan di database, dll.
-        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean, isNotClean)
+        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean , packaging, pelayanan,rekomendasi )
 
         // Reset form setelah submit
         editTextRestaurantName.text.clear()
@@ -121,7 +126,10 @@ class UlasanFragment : Fragment() {
         imageViewSelectedPhoto.setImageDrawable(null)
         editTextDescription.text.clear()
         checkBoxClean.isChecked = false
-        checkBoxNotClean.isChecked = false
+        checkBoxPelayanan.isChecked = false
+        checkBoxPackaging.isChecked = false
+        checkBoxRekomendasi.isChecked = false
+
     }
 
 }

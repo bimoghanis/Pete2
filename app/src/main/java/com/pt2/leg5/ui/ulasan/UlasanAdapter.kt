@@ -28,12 +28,18 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
         private val textViewRestaurantAddress: TextView = itemView.findViewById(R.id.textViewRestaurantAddress)
         private val textViewDescription: TextView = itemView.findViewById(R.id.textViewDescription)
         private val textViewCleanStatus: TextView = itemView.findViewById(R.id.textViewCleanStatus)
+        private val textViewPackaging: TextView = itemView.findViewById(R.id.textViewPackaging)
+        private val textViewPelayanan: TextView = itemView.findViewById(R.id.textViewPelayanan)
+        private val textViewRekomendasi: TextView = itemView.findViewById(R.id.textViewRekomendasi)
 
         fun bind(ulasan: UlasanEntity) {
             textViewRestaurantName.text = ulasan.restaurantName
             textViewRestaurantAddress.text = ulasan.restaurantAddress
             textViewDescription.text = ulasan.description
-            textViewCleanStatus.text = if (ulasan.isClean) "Clean" else "Not Clean"
+            textViewCleanStatus.text = if (ulasan.isClean) "Clean 👍" else "Not Clean"
+            textViewPackaging.text = if (ulasan.packaging) "Take Away 👍" else "Dine in only"
+            textViewPelayanan.text = if (ulasan.services) "Good Services 👍" else "Bad Services"
+            textViewRekomendasi.text = if (ulasan.recommend) "Recommended 😘" else "Not Recommended"
         }
     }
 
