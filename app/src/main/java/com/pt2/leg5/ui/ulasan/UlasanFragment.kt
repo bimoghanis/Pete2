@@ -9,10 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pt2.leg5.R
@@ -111,14 +108,21 @@ class UlasanFragment : Fragment() {
         val restaurantAddress = editTextRestaurantAddress.text.toString()
         val description = editTextDescription.text.toString()
 
+        // Periksa jika ada input yang kosong
+        if (restaurantName.isBlank() || restaurantAddress.isBlank() || description.isBlank()) {
+            Toast.makeText(requireContext(), "Tolong diisi dlu dengan lengkap ya fiver's😊", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         // Periksa kebersihan yang dipilih
         val isClean = checkBoxClean.isChecked
         val packaging = checkBoxPackaging.isChecked
         val pelayanan = checkBoxPelayanan.isChecked
         val rekomendasi = checkBoxRekomendasi.isChecked
+
         // Lakukan sesuatu dengan data komentar/ulasan makanan yang diisi
         // Misalnya, kirim data ke server, simpan di database, dll.
-        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean , packaging, pelayanan,rekomendasi )
+        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean, packaging, pelayanan, rekomendasi)
 
         // Reset form setelah submit
         editTextRestaurantName.text.clear()
@@ -129,7 +133,6 @@ class UlasanFragment : Fragment() {
         checkBoxPelayanan.isChecked = false
         checkBoxPackaging.isChecked = false
         checkBoxRekomendasi.isChecked = false
-
     }
 
 }

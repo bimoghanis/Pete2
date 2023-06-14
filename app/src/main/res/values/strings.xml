@@ -15,4 +15,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="searchbar_hint">cari dong</string>
+    <string name="title_mypost">My Post</string>
 </resources>

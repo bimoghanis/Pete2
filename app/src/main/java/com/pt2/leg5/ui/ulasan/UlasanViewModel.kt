@@ -21,6 +21,13 @@ class UlasanViewModel(application: Application) : AndroidViewModel(application) 
         return ulasanDao.getAllUlasan()
     }
 
+    fun deleteUlasan(ulasan: UlasanEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            ulasanDao.deleteUlasan(ulasan)
+        }
+    }
+
+
     fun searchUlasan(query: String): LiveData<List<UlasanEntity>> {
         return ulasanDao.searchUlasan(query)
     }

@@ -12,14 +12,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.storage.FirebaseStorage
 import com.pt2.leg5.LoginActivity
+import com.pt2.leg5.R
 import com.pt2.leg5.databinding.FragmentUserBinding
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
+import androidx.navigation.fragment.findNavController
+
 
 class UserFragment : Fragment() {
 
@@ -50,6 +54,10 @@ class UserFragment : Fragment() {
             Picasso.get().load(imgUri).into(binding.cviUser)
         }
 
+        binding.btnMyPost.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_user_to_myPostFragment)
+        }
+
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
@@ -67,6 +75,11 @@ class UserFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             btnLogout()
         }
+
+        binding.btnMyPost.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_user_to_myPostFragment)
+        }
+
 
         //button buat verifikasi email
         binding.btnVerify.setOnClickListener {
@@ -234,6 +247,7 @@ class UserFragment : Fragment() {
                             saveImageUrlToStorage(imageUrl) // Menyimpan URL gambar profil ke penyimpanan lokal
                             imgUri = Uri.parse(imageUrl) // Menyimpan URI gambar profil di imgUri
                             binding.cviUser.setImageBitmap(imgBitmap)
+                            Toast.makeText(activity, "Cieeee ada fotonya 😎", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

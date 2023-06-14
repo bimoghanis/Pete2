@@ -22,4 +22,14 @@
         android:name="com.pt2.leg5.ui.user.UserFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.pt2.leg5.ui.user.MyPostFragment"
+        android:label="@string/title_mypost"
+        tools:layout="@layout/fragment_mypost" />
+
+    <action
+        android:id="@+id/action_navigation_user_to_myPostFragment"
+        app:destination="@id/myPostFragment" />
+
 </navigation>

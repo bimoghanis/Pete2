@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pt2.leg5.R
@@ -21,7 +22,11 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerViewUlasan: RecyclerView
     private lateinit var ulasanAdapter: UlasanAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -64,7 +69,14 @@ class HomeFragment : Fragment() {
     private fun searchUlasan(query: String) {
         val ulasanViewModel = ViewModelProvider(requireActivity()).get(UlasanViewModel::class.java)
         ulasanViewModel.searchUlasan(query).observe(viewLifecycleOwner) { ulasanList ->
-            ulasanAdapter.submitList(ulasanList)
+            if (ulasanList.isNotEmpty()) {
+                // Jika ada hasil pencarian, set data ulasan ke adapter
+                ulasanAdapter.submitList(ulasanList)
+                Toast.makeText(requireContext(), "Yeay, ditemukan!😘", Toast.LENGTH_SHORT).show()
+            } else {
+                // Jika tidak ada hasil pencarian, tampilkan pesan "Tidak ditemukan"
+                Toast.makeText(requireContext(), "Coba cari yang lain ya!!☺", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

@@ -113,41 +113,94 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/textViewCleanliness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="16sp" />
 
-    <CheckBox
-        android:id="@+id/checkBoxClean"
-        android:layout_width="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_height="wrap_content"
-        android:text="Bersih" />
-
-    <CheckBox
-        android:id="@+id/checkBoxPackaging"
-        android:layout_width="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_height="wrap_content"
-        android:text="Packaging" />
-        <CheckBox
-            android:id="@+id/checkBoxService"
-            android:layout_width="wrap_content"
-            android:fontFamily="@font/poppins_bold"
+        <TextView
+            android:id="@+id/textViewCleanliness"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pelayanan" />
-
-        <CheckBox
-        android:id="@+id/checkBoxRecommended"
-        android:layout_width="wrap_content"
             android:fontFamily="@font/poppins_bold"
-        android:layout_height="wrap_content"
-        android:text="Rekomendasi" />
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxClean"
+                android:layout_width="330dp"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_height="match_parent"
+                android:text="Bersih" />
+
+            <ImageView
+                android:id="@+id/kebersihanLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/kebersihan"
+                android:padding="4dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/checkBoxPackaging"
+                android:layout_width="330dp"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_height="match_parent"
+                android:text="Packaging" />
+
+            <ImageView
+                android:id="@+id/pakegingLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pekeging"
+                android:padding="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBoxService"
+                    android:layout_width="330dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_height="wrap_content"
+                    android:text="Pelayanan" />
+
+            <ImageView
+                android:id="@+id/pelayananLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pelayanan"
+                android:padding="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+                <CheckBox
+                android:id="@+id/checkBoxRecommended"
+                android:layout_width="330dp"
+                    android:fontFamily="@font/poppins_bold"
+                android:layout_height="wrap_content"
+                android:text="Rekomendasi" />
+
+            <ImageView
+                android:id="@+id/likeLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/like"
+                android:padding="4dp"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button

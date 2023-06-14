@@ -79,11 +79,11 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/btn_changeEmail"
+            android:id="@+id/btn_MyPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="Change Email"
+            android:text="Delete Post"
             android:fontFamily="@font/poppins_bold"
             android:textColor="#000000" />
 

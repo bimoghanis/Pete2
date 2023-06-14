@@ -12,6 +12,11 @@ import com.pt2.leg5.db.UlasanEntity
 
 class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(UlasanDiffCallback()) {
 
+    private var onItemClick: ((UlasanEntity) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (UlasanEntity) -> Unit) {
+        onItemClick = listener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UlasanViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_ulasan, parent, false)
@@ -41,7 +46,18 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
             textViewPelayanan.text = if (ulasan.services) "Good Services 👍" else "Bad Services"
             textViewRekomendasi.text = if (ulasan.recommend) "Recommended 😘" else "Not Recommended"
         }
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val ulasan = getItem(position)
+                    onItemClick?.invoke(ulasan)
+                }
+            }
+        }
     }
+}
 
     private class UlasanDiffCallback : DiffUtil.ItemCallback<UlasanEntity>() {
         override fun areItemsTheSame(oldItem: UlasanEntity, newItem: UlasanEntity): Boolean {
@@ -52,4 +68,4 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
             return oldItem == newItem
         }
     }
-}
+
