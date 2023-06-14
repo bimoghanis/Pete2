@@ -16,8 +16,8 @@ data class UlasanEntity(
     @ColumnInfo(name = "restaurant_address")
     var restaurantAddress: String,
 
-    @ColumnInfo(name = "photo")
-    var photo: String,
+    @ColumnInfo(name = "photoo")
+    var photoo: ByteArray? = null,
 
     @ColumnInfo(name = "description")
     var description: String,

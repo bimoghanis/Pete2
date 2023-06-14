@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pt2.leg5.R
+import java.io.ByteArrayOutputStream
 
 class UlasanFragment : Fragment() {
 
@@ -108,6 +110,13 @@ class UlasanFragment : Fragment() {
         val restaurantAddress = editTextRestaurantAddress.text.toString()
         val description = editTextDescription.text.toString()
 
+        val imageBitmap = (imageViewSelectedPhoto.drawable as? BitmapDrawable)?.bitmap
+        val gambarByteArray: ByteArray? = imageBitmap?.let { bitmap ->
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            stream.toByteArray()
+        }
+
         // Periksa jika ada input yang kosong
         if (restaurantName.isBlank() || restaurantAddress.isBlank() || description.isBlank()) {
             Toast.makeText(requireContext(), "Tolong diisi dlu dengan lengkap ya fiver's😊", Toast.LENGTH_SHORT).show()
@@ -122,7 +131,7 @@ class UlasanFragment : Fragment() {
 
         // Lakukan sesuatu dengan data komentar/ulasan makanan yang diisi
         // Misalnya, kirim data ke server, simpan di database, dll.
-        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean, packaging, pelayanan, rekomendasi)
+        viewModel.submitComment(restaurantName, restaurantAddress, description, isClean, packaging, pelayanan, rekomendasi, gambarByteArray)
 
         // Reset form setelah submit
         editTextRestaurantName.text.clear()
@@ -134,5 +143,4 @@ class UlasanFragment : Fragment() {
         checkBoxPackaging.isChecked = false
         checkBoxRekomendasi.isChecked = false
     }
-
 }

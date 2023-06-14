@@ -1,8 +1,10 @@
 package com.pt2.leg5.ui.ulasan
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,6 +19,7 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
     fun setOnItemClickListener(listener: (UlasanEntity) -> Unit) {
         onItemClick = listener
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UlasanViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_ulasan, parent, false)
@@ -36,6 +39,7 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
         private val textViewPackaging: TextView = itemView.findViewById(R.id.textViewPackaging)
         private val textViewPelayanan: TextView = itemView.findViewById(R.id.textViewPelayanan)
         private val textViewRekomendasi: TextView = itemView.findViewById(R.id.textViewRekomendasi)
+        private val imageViewPhoto: ImageView = itemView.findViewById(R.id.imageViewPhoto)
 
         fun bind(ulasan: UlasanEntity) {
             textViewRestaurantName.text = ulasan.restaurantName
@@ -45,6 +49,14 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
             textViewPackaging.text = if (ulasan.packaging) "Take Away 👍" else "Dine in only"
             textViewPelayanan.text = if (ulasan.services) "Good Services 👍" else "Bad Services"
             textViewRekomendasi.text = if (ulasan.recommend) "Recommended 😘" else "Not Recommended"
+
+            val photoo = ulasan.photoo // Simpan nilai photoo dalam variabel lokal
+            if (photoo != null) {
+                val bitmap = BitmapFactory.decodeByteArray(photoo, 0, photoo.size)
+                imageViewPhoto.setImageBitmap(bitmap)
+            } else {
+                // Setel gambar placeholder atau tampilkan sesuatu jika tidak ada gambar
+            }
         }
 
         init {
@@ -57,7 +69,6 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
             }
         }
     }
-}
 
     private class UlasanDiffCallback : DiffUtil.ItemCallback<UlasanEntity>() {
         override fun areItemsTheSame(oldItem: UlasanEntity, newItem: UlasanEntity): Boolean {
@@ -68,4 +79,4 @@ class UlasanAdapter : ListAdapter<UlasanEntity, UlasanAdapter.UlasanViewHolder>(
             return oldItem == newItem
         }
     }
-
+}
